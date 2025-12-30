@@ -1,32 +1,33 @@
-<!--
- * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @Date: 2025-12-18 17:31:00
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2025-12-19 17:16:01
- * @FilePath: /ExploitVisualizer/README.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
-# ExploitVisualizer 使用说明
+#  SecTech Vis 安全能力可视化
 
-ExploitVisualizer 是一个双语（中/英）的“二进制与 Web 漏洞”交互式可视化平台。通过分步动画、伪代码高亮、缓解/检测清单和直观的流程图，帮助你快速理解各类漏洞的形成机制与攻防思路。
+SecTech Vis  是一个双语（中/英）的“二进制计数对抗与 Web 安全”交互式可视化平台。通过分步动画、伪代码高亮、缓解/检测清单和直观的流程图，帮助你快速理解各类漏洞的形成机制与攻防思路。
+
+![main](./doc/index.png)
+
+
 
 ## 平台功能
 - 分类导航：`Binary`、`Adversarial`、`Web`、`Algorithm` 四大类，侧边栏一键切换。
 - 交互演示：播放/暂停、上一步/下一步，逐步呈现漏洞形成过程与关键状态变化。
 - 伪代码联动：右侧代码区按步骤高亮关键行，帮助建立“流程 ↔ 代码”心智模型。
 - 攻防清单：在“缓解建议/检测点”之间切换，既看防护要点也看监测线索。
-- 架构切换：二进制类支持 `x86/x64/ARM-LE/ARM-BE`，寄存器/栈等展示随架构联动。
+- 架构切换：部分二进制类支持 `x86/x64/ARM-LE/ARM-BE`，寄存器/栈等展示随架构联动。
 - 双语支持：右下角可切换 `EN/中文`。
 - 典型漏洞可视化：包含但不限于 `Stack/Heap/UAF/Format String/Integer Overflow/Double Free/ROP/Heavens Gate/Reflective DLL/Process Hollowing/Thread Hijacking/Network Mapping/WAF/IPS/AES` 以及 Web 类 `SQLi/SSRF/CSRF/XXE/XSS/反序列化/Log4Shell/Next.js RCE/路径穿越`。
 
+
+
 ## 技术栈
+
 - 前端框架：`React` + `TypeScript`
 - 构建工具：`Vite`
 - UI/样式：`Tailwind CSS`（通过 CDN 注入，见 `index.html`）
 - 图标库：`lucide-react`
-- 大模型可选能力：`@google/genai`（见 `services/geminiService.ts`）
+
+
 
 ## 页面布局设计
+
 - 网格布局：主内容区采用 `12 列 grid` 布局，典型分栏如下：
   - 左栏：步骤控制条、当前步骤说明、伪代码区（`lg:col-span-5` 或 `3`）
   - 中栏：可视化画布（`lg:col-span-7` 或 `6`）
@@ -37,19 +38,13 @@ ExploitVisualizer 是一个双语（中/英）的“二进制与 Web 漏洞”�
 - 代码区高亮：根据当前步骤 `highlightLines` 联动高亮，保持“过程 → 代码”一致性。
 - 视图切换：检测点与缓解建议通过 `useDetectionPoints` 自动匹配展示逻辑。
 
-## 目录结构速览
-- `App.tsx`：页面骨架、路由状态、I18N、步骤生成 `getSteps`、清单配置等。
-- `components/*`：各类可视化组件（如 `StackVisualizer`, `PathTraversalVisualizer` 等）。
-- `types.ts`：类型枚举（`Category/ExploitType/Language/Architecture`）、步骤字段、伪代码常量。
-- `services/geminiService.ts`：可选的模型能力对接示例。
-- `index.html`：Tailwind CDN、字体、importmap（浏览器端依赖解析）。
+
 
 ## 快速开始
+
 - 环境要求：`Node.js 18+`
 - 安装依赖：
   - `npm install`
-- 配置 API Key（如需启用模型能力）：
-  - 在 `.env` 设置 `GEMINI_API_KEY=...`
 - 本地开发：
   - `npm run dev`
   - 控制台会输出地址，例如 `http://localhost:3001/`
@@ -79,16 +74,8 @@ ExploitVisualizer 是一个双语（中/英）的“二进制与 Web 漏洞”�
    - 侧边栏 `MenuItem` 增加入口与图标
    - 中间内容区增加 `<YourExploit>Visualizer` 渲染分支
 
-## 设计方法与原则
-- 教学优先：每一步揭示一个关键动作或状态，避免一次性展示过多信息。
-- 直观联动：流程图、步骤说明与代码片段保持紧密关联，帮助建立整体理解。
-- 一致风格：组件命名、步骤字段、文案键名统一，方便维护与扩展。
-- 轻量构建：使用 `Vite` 与 `Tailwind CDN`，开箱即用、快速开发。
 
-## 常见问题
-- 端口占用：开发服务器默认 `3000`，占用时会自动切换到 `3001/3002`。
-- 样式未生效：确保 `index.html` 中 Tailwind CDN `<script src="https://cdn.tailwindcss.com"></script>` 正常加载。
-- API Key 无法读取：确认 `.env` 已设置 `GEMINI_API_KEY` 并重新启动开发服务器。
 
 ## 贡献
 - 欢迎提交 PR 与 Issue，建议遵循现有组件与步骤命名风格，便于统一维护与文档化。
+- 新需求和ToDo可以在issue上提交，作者有时间的活会更新（但愿）。
