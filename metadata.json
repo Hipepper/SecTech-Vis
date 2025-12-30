@@ -1,0 +1,5 @@
+{
+  "name": "ExploitVisualizer",
+  "description": "An educational platform for Binary (Multi-Arch) and Web vulnerabilities with bilingual support.",
+  "requestFramePermissions": []
+}
