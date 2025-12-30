@@ -2,6 +2,8 @@
 
 SecTech Vis  是一个双语（中/英）的“二进制计数对抗与 Web 安全”交互式可视化平台。通过分步动画、伪代码高亮、缓解/检测清单和直观的流程图，帮助你快速理解各类漏洞的形成机制与攻防思路。
 
+[sectechvis](https://sectechvis.vercel.app/):`https://sectechvis.vercel.app/`
+
 ![main](./doc/index.png)
 
 
